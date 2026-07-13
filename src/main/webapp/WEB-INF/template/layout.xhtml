@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Ghost Net Fishing - #{empty pageTitle ? 'Start' : pageTitle}</title>
+    <h:outputStylesheet library="css" name="app.css"/>
+</h:head>
+
+<h:body>
+    <div class="kopf">
+        <h1>Ghost Net Fishing</h1>
+        <p>Geisternetze melden und bergen</p>
+    </div>
+
+    <!-- einfache Navigation, keine Login-Logik nötig -->
+    <div class="navi">
+        <h:link value="Start" outcome="index"/>
+        <h:link value="Netz melden" outcome="erfassen"/>
+        <h:link value="Offene Netze" outcome="offene"/>
+        <h:link value="Bergung eintragen" outcome="bergung"/>
+        <h:link value="Verschollen melden" outcome="verschollen"/>
+    </div>
+
+    <p:messages showSummary="true" showDetail="false" closable="true">
+        <p:autoUpdate/>
+    </p:messages>
+
+    <div class="inhalt">
+        <ui:insert name="inhalt">Hier steht der Seiteninhalt.</ui:insert>
+    </div>
+</h:body>
+</html>

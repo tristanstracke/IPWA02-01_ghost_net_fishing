@@ -1,0 +1,21 @@
+# Build-Output
+target/
+
+# eingebettete Derby-Datenbank (wird zur Laufzeit erzeugt)
+ghostnetDB/
+derby.log
+
+# generierte / temporäre Dateien
+*.log
+schema_ddl.sql
+
+# IDE
+*.iml
+.idea/
+.classpath
+.project
+.settings/
+.vscode/
+
+# macOS
+.DS_Store

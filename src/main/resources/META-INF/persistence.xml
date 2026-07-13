@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <!-- Anwendungsverwaltete Persistenz (RESOURCE_LOCAL). Die DAOs öffnen den
+         EntityManager selbst und steuern die Transaktionen. -->
+    <persistence-unit name="ghostnetPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <properties>
+            <!-- Eingebettete Apache-Derby-Datenbank. Die Datenbank "ghostnetDB"
+                 wird beim ersten Start als Ordner im Arbeitsverzeichnis angelegt
+                 (create=true), ein separater Datenbankserver ist nicht nötig. -->
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:ghostnetDB;create=true"/>
+            <property name="javax.persistence.jdbc.user" value="app"/>
+            <property name="javax.persistence.jdbc.password" value="app"/>
+
+            <!-- TomEE soll die EntityManagerFactory nicht schon beim Start selbst
+                 aufbauen (das löst sonst einen Konflikt zwischen Hibernate und der
+                 CDI-Umgebung des Servers aus). Die Factory wird stattdessen erst bei
+                 Bedarf über JPAUtil erzeugt. -->
+            <property name="tomee.jpa.factory.lazy" value="true"/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
+            <!-- legt die Tabellen beim Start an bzw. aktualisiert sie -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

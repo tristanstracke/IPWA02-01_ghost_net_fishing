@@ -1,0 +1,57 @@
+/* Layout der Anwendung */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    color: #222;
+    background: #f4f6f7;
+}
+
+.kopf {
+    background: #1b6ca8;
+    color: #fff;
+    padding: 12px 20px;
+}
+
+.kopf h1 {
+    margin: 0 0 4px 0;
+}
+
+.kopf p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.navi {
+    background: #134e75;
+    padding: 8px 20px;
+}
+
+.navi a {
+    color: #fff;
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+.navi a:hover {
+    text-decoration: underline;
+}
+
+.inhalt {
+    padding: 20px;
+}
+
+.formfeld {
+    margin-bottom: 8px;
+}
+
+.formfeld label {
+    display: inline-block;
+    width: 180px;
+    vertical-align: top;
+}
+
+.hinweis {
+    color: #555;
+    font-size: 0.85em;
+}

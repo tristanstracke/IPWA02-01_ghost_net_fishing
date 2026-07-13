@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/layout.xhtml">
+
+    <ui:param name="pageTitle" value="Offene Netze"/>
+
+    <ui:define name="inhalt">
+        <h2>Noch zu bergende Netze</h2>
+
+        <h:form>
+            <p:dataTable value="#{offeneNetzeBean.netze}" var="n"
+                         emptyMessage="Zurzeit sind keine offenen Netze vorhanden.">
+
+                <p:column headerText="Nr.">
+                    #{n.id}
+                </p:column>
+
+                <p:column headerText="Status">
+                    #{n.status.bezeichnung}
+                </p:column>
+
+                <p:column headerText="Standort (Breite / Länge)">
+                    #{n.breitengrad} / #{n.laengengrad}
+                </p:column>
+
+                <p:column headerText="Geschätzte Größe">
+                    #{n.geschaetzteGroesse}
+                </p:column>
+
+                <p:column headerText="Bergende Person">
+                    <h:outputText value="#{n.berger.name}" rendered="#{not empty n.berger}"/>
+                    <h:outputText value="-" rendered="#{empty n.berger}"/>
+                </p:column>
+
+                <p:column headerText="Aktion">
+                    <!-- Geborgen-Meldung nur sinnvoll, wenn sich jemand für die Bergung eingetragen hat -->
+                    <p:commandButton value="Als geborgen melden"
+                                     rendered="#{n.status eq 'BERGUNG_BEVORSTEHEND'}"
+                                     action="#{offeneNetzeBean.alsGeborgenMelden(n)}"
+                                     update="@form"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
